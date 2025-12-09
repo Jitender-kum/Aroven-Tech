@@ -9,7 +9,7 @@ const AllProjects = () => {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const res = await fetch('http://localhost:5000/api/projects');
+        const res = await fetch('https://aroven-tech.onrender.com/api/projects');
         const data = await res.json();
         setProjects(data);
         setLoading(false);

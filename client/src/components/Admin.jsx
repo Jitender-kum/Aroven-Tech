@@ -25,8 +25,8 @@ const Admin = () => {
 
   const fetchData = async () => {
     try {
-      const msgRes = await fetch('http://localhost:5000/api/contact');
-      const projRes = await fetch('http://localhost:5000/api/projects');
+      const msgRes = await fetch('https://aroven-tech.onrender.com/api/contact');
+      const projRes = await fetch('https://aroven-tech.onrender.com/api/projects');
       setMessages(await msgRes.json());
       setProjects(await projRes.json());
     } catch (err) { console.error(err); }
@@ -62,8 +62,8 @@ const Admin = () => {
     
     // Agar editingId hai to UPDATE (PUT), nahi to ADD (POST)
     const url = editingId 
-      ? `http://localhost:5000/api/projects/${editingId}`
-      : 'http://localhost:5000/api/projects';
+      ? `https://aroven-tech.onrender.com/api/projects/${editingId}`
+      : 'https://aroven-tech.onrender.com/api/projects';
       
     const method = editingId ? 'PUT' : 'POST';
 
@@ -83,13 +83,13 @@ const Admin = () => {
   // --- 4. DELETE ---
   const deleteProject = async (id) => {
     if(!window.confirm("Delete this project?")) return;
-    await fetch(`http://localhost:5000/api/projects/${id}`, { method: 'DELETE' });
+    await fetch(`https://aroven-tech.onrender.com/api/projects/${id}`, { method: 'DELETE' });
     setProjects(projects.filter(p => p._id !== id));
   };
 
   const deleteMessage = async (id) => {
     if(!window.confirm("Delete message?")) return;
-    await fetch(`http://localhost:5000/api/contact/${id}`, { method: 'DELETE' });
+    await fetch(`https://aroven-tech.onrender.com/api/contact/${id}`, { method: 'DELETE' });
     setMessages(messages.filter(m => m._id !== id));
   };
 
