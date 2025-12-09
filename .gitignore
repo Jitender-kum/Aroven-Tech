@@ -1,0 +1,27 @@
+# Dependency Directories (CRITICAL)
+# Ye files size me bohot bade hote hain aur baar-baar badalte hain.
+node_modules
+/client/node_modules
+/server/node_modules
+
+# Environment Variables & Secrets (CRITICAL for Security)
+# Aapke passwords aur API keys isme hote hain. Ise public nahi karna.
+.env
+.env.local
+.env.development.local
+.env.production.local
+
+# Build/Output Folders
+# Ye folders 'npm run build' se bante hain aur server ko deploy karne me use hote hain.
+/client/dist
+/client/build
+/server/dist
+/server/public
+/server/logs
+
+# NPM & OS Artifacts
+package-lock.json
+npm-debug.log
+yarn-error.log
+.DS_Store
+*.swp

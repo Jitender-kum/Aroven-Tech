@@ -1,0 +1,1045 @@
+/* --- Global Reset --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #050505; /* Deep Black */
+  color: #ffffff;
+  overflow-x: hidden;
+}
+
+/* --- Utilities --- */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.btn {
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  border: none;
+}
+
+.btn-primary {
+  background: #2563eb; /* Blue */
+  color: white;
+}
+.btn-primary:hover { background: #1d4ed8; transform: translateY(-2px); }
+
+.btn-secondary {
+  background: transparent;
+  border: 1px solid #4b5563;
+  color: white;
+}
+.btn-secondary:hover { border-color: white; background: rgba(255,255,255,0.1); }
+
+/* --- Navbar --- */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 15px 0;
+  background: rgba(0, 0, 0, 0.8); /* Glass Effect */
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  border-bottom: 1px solid #333;
+}
+
+.nav-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.logo span { color: #2563eb; }
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+  list-style: none;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #ccc;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover { color: #2563eb; }
+
+/* --- Hero Section --- */
+.hero {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: radial-gradient(circle at center, #111827 0%, #000000 70%);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  background: #1f2937;
+  padding: 5px 15px;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  margin-bottom: 2rem;
+  border: 1px solid #374151;
+}
+
+.badge span { color: #60a5fa; font-weight: bold; margin-right: 8px; }
+
+.hero h1 {
+  font-size: 4rem;
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+}
+
+.gradient-text {
+  background: linear-gradient(90deg, #3b82f6, #9333ea);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+  color: #9ca3af;
+  font-size: 1.2rem;
+  max-width: 700px;
+  margin: 0 auto 2.5rem auto;
+  line-height: 1.6;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+/* --- Services Section --- */
+.services-section {
+  padding: 80px 20px;
+  background-color: #050505;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 3rem;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.service-card {
+  background: #111;
+  border: 1px solid #222;
+  padding: 40px 30px;
+  border-radius: 16px;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.service-card:hover {
+  transform: translateY(-10px);
+  border-color: #2563eb;
+  box-shadow: 0 10px 30px rgba(37, 99, 235, 0.15);
+}
+
+.icon-box {
+  width: 60px;
+  height: 60px;
+  background: #1f2937;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  color: #3b82f6;
+}
+
+.service-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.service-card p {
+  color: #9ca3af;
+  line-height: 1.6;
+}
+
+/* --- Projects Section --- */
+.projects-section {
+  padding: 80px 20px;
+  background-color: #080808; /* Thoda sa lighter black for contrast */
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.project-card {
+  background: #111;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid #222;
+  
+  /* Alignment Fixes */
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+  
+  /* 🔥 IMPORTANT FIX: Ye card ko failne se rokega */
+  width: 100%;
+  max-width: 380px; /* Card isse bada nahi hoga */
+  margin: 0 auto;   /* Agar akela hai to center me rahega */
+
+  /* Animation */
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+}
+.project-card:hover {
+  transform: translateY(-10px); /* Card upar uthega */
+  border-color: #3b82f6; /* Border Blue hogi */
+  box-shadow: 0 20px 40px -10px rgba(59, 130, 246, 0.3); /* Neon Glow */
+}
+.project-image {
+  height: 200px;
+  background: linear-gradient(45deg, #1e1e2f, #2d2d44); /* Placeholder for Image */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #555;
+  font-weight: bold;
+}
+
+/* Image ke upar agar actual image lagani ho toh ye class use hogi */
+.project-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.project-content {
+  padding: 25px;
+  
+  /* NEW: Content container will grow to fill space */
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; 
+}
+
+.project-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: white;
+}
+
+.project-desc {
+  color: #a1a1aa;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+.tech-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.tech-tag {
+  background: rgba(37, 99, 235, 0.1);
+  color: #60a5fa;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border: 1px solid rgba(37, 99, 235, 0.2);
+}
+
+/* --- Modern Buttons Styling --- */
+.project-links {
+  display: flex;
+  gap: 15px;
+  margin-top: auto; /* Push buttons to bottom if content varies */
+  padding-top: 15px;
+}
+
+.link-btn {
+  padding: 10px 24px;
+  border-radius: 50px; /* Pill Shape modern lagta hai */
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+  letter-spacing: 0.5px;
+}
+
+/* 🔥 Style 1: Live Demo (Gradient & Glow) */
+.link-btn.demo {
+  background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+  color: white;
+  border: none;
+  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4); /* Blue Glow */
+}
+
+.link-btn.demo:hover {
+  transform: translateY(-3px); /* Thoda upar uthega */
+  box-shadow: 0 8px 25px rgba(124, 58, 237, 0.6); /* Purple Glow badh jayega */
+}
+
+/* 💻 Style 2: Code (Glassy & Clean) */
+.link-btn.code {
+  background: rgba(255, 255, 255, 0.05); /* Transparent */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #d1d5db;
+}
+
+.link-btn.code:hover {
+  background: white;
+  color: black;
+  border-color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+}
+
+/* Optional: Icon animation on hover */
+.link-btn:hover span {
+  display: inline-block;
+  animation: bounce 0.5s ease;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+/* --- Footer Section --- */
+.footer {
+  background: #000;
+  padding: 80px 20px 20px; /* Top padding zyada for breathing space */
+  border-top: 1px solid #1f2937;
+  text-align: center;
+}
+
+.footer-content {
+  max-width: 800px;
+  margin: 0 auto 60px; /* Bottom margin for copyright separator */
+}
+
+.footer-title {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.footer-desc {
+  color: #9ca3af;
+  font-size: 1.2rem;
+  margin-bottom: 40px;
+}
+
+.email-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: white;
+  color: black;
+  padding: 15px 40px;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.email-btn:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 50px;
+}
+
+.social-icon {
+  color: #6b7280;
+  transition: color 0.3s ease;
+}
+
+.social-icon:hover {
+  color: #3b82f6; /* Blue glow on hover */
+}
+
+.footer-bottom {
+  border-top: 1px solid #1f2937;
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #4b5563;
+  font-size: 0.9rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .footer-title { font-size: 2rem; }
+  .footer-bottom { flex-direction: column; gap: 10px; }
+}
+
+.menu-icon {
+  display: none;
+  cursor: pointer;
+}
+
+/* Default: Show Desktop Button, Hide Mobile Button inside list */
+.desktop-btn { display: block; }
+.mobile-btn { display: none; }
+
+@media (max-width: 768px) {
+  
+  /* Container adjustments */
+  .container { padding: 0 20px; width: 100%; }
+
+  /* Navbar styling */
+  .navbar {
+    padding: 15px 0;
+    background: #000; /* Solid background for mobile menu visibility */
+  }
+
+  /* 1. Show Hamburger Icon */
+  .menu-icon {
+    display: block;
+    z-index: 1001;
+  }
+
+  /* 2. Hide Desktop Button */
+  .desktop-btn { display: none; }
+
+  /* 3. Mobile Menu Layout (Hidden by default) */
+  .nav-links {
+    position: absolute;
+    top: 70px; /* Navbar height ke neeche */
+    left: 0;
+    width: 100%;
+    background: #111; /* Dark background for menu */
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    padding: 40px 0;
+    border-bottom: 1px solid #333;
+    
+    /* Animation Logic */
+    transform: translateY(-150%); /* Upar chupa hua hai */
+    transition: transform 0.3s ease-in-out;
+    z-index: 999;
+  }
+
+  /* 4. Jab Active class milegi (Click karne par) */
+  .nav-links.active {
+    transform: translateY(0); /* Neeche aa jayega */
+  }
+
+  /* Mobile Button inside menu */
+  .mobile-btn {
+    display: block;
+    width: 80%; /* Button thoda chouda */
+  }
+
+  /* --- Other Mobile Adjustments --- */
+  .hero h1 { font-size: 2.5rem; }
+  .services-grid, .project-grid { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; gap: 10px; }
+}
+
+/* =========================================
+   🛡️ ADMIN DASHBOARD STYLING
+   ========================================= */
+
+.admin-page {
+  background-color: #050505;
+  min-height: 100vh;
+  padding-top: 100px; /* Navbar ke neeche ane ke liye */
+  padding-bottom: 50px;
+}
+
+.admin-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #3b82f6; /* Blue Title */
+  margin-bottom: 40px;
+  border-bottom: 1px solid #222;
+  padding-bottom: 20px;
+}
+
+.admin-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 2 Column Layout */
+  gap: 40px;
+}
+
+/* Mobile ke liye single column */
+@media (max-width: 768px) {
+  .admin-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --- Cards (Boxes) --- */
+.admin-card {
+  background: #111;
+  border: 1px solid #222;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+
+.card-title {
+  font-size: 1.5rem;
+  margin-bottom: 25px;
+  color: white;
+  border-left: 4px solid #3b82f6; /* Side me blue line */
+  padding-left: 15px;
+}
+
+/* --- Form Inputs --- */
+.admin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-input {
+  background: #000;
+  border: 1px solid #333;
+  color: white;
+  padding: 12px 15px;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #3b82f6; /* Focus karne par blue border */
+}
+
+.textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.submit-btn {
+  margin-top: 10px;
+  width: 100%;
+}
+
+/* --- Messages Area --- */
+.messages-list {
+  max-height: 550px;
+  overflow-y: auto; /* Scrollbar agar messages zyada ho */
+  padding-right: 10px;
+}
+
+/* Custom Scrollbar for messages */
+.messages-list::-webkit-scrollbar {
+  width: 6px;
+}
+.messages-list::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 10px;
+}
+
+.no-msg {
+  color: #555;
+  font-style: italic;
+}
+
+.msg-card {
+  background: #1a1a1a;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #333;
+}
+
+.msg-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.msg-name {
+  font-weight: 700;
+  color: #fff;
+}
+
+.msg-date {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.msg-email {
+  color: #3b82f6;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+.msg-text {
+  color: #ccc;
+  line-height: 1.4;
+  background: #000;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+/* =========================================
+   📩 CONTACT FORM STYLING
+   ========================================= */
+
+.contact-section {
+  padding: 80px 20px;
+  background-color: #050505;
+}
+
+.contact-wrapper {
+  max-width: 600px; /* Form ko center mein rakhenge */
+  margin: 0 auto;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background: #111;
+  padding: 40px;
+  border-radius: 16px;
+  border: 1px solid #222;
+  box-shadow: 0 4px 30px rgba(0,0,0,0.5);
+}
+
+.contact-form input, 
+.contact-form textarea {
+  width: 100%;
+  background: #000;
+  border: 1px solid #333;
+  color: white;
+  padding: 15px;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.contact-form input:focus, 
+.contact-form textarea:focus {
+  outline: none;
+  border-color: #3b82f6;
+  background: #050505;
+}
+
+.success-msg {
+  color: #4ade80; /* Green */
+  text-align: center;
+  margin-top: 10px;
+  font-weight: 600;
+}
+
+.error-msg {
+  color: #ef4444; /* Red */
+  text-align: center;
+  margin-top: 10px;
+}
+
+
+/* --- Admin Updates --- */
+.admin-right-column {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.list-container {
+  max-height: 300px;
+  overflow-y: auto;
+  padding-right: 5px;
+}
+
+.item-card {
+  background: #1a1a1a;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #333;
+  display: flex;
+  justify-content: space-between; /* Content Left, Delete Right */
+  align-items: center;
+}
+
+.item-name {
+  font-weight: 700;
+  color: white;
+  font-size: 1rem;
+}
+
+.item-sub {
+  color: #aaa;
+  font-size: 0.85rem;
+  margin-top: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+}
+
+/* 🔴 Delete Button */
+.delete-btn {
+  background: #3f1010;
+  border: 1px solid #7f1d1d;
+  color: #fca5a5;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: all 0.2s;
+}
+
+.delete-btn:hover {
+  background: #dc2626;
+  color: white;
+  transform: scale(1.1);
+}
+
+.mb-10 { margin-bottom: 30px; }
+
+/* --- Login Page --- */
+.login-container {
+  height: 100vh;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.login-box {
+  background: #111;
+  padding: 40px;
+  border-radius: 16px;
+  border: 1px solid #333;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 0 50px rgba(37, 99, 235, 0.1); /* Blue Glow */
+}
+
+/* --- WhatsApp Floating Button --- */
+.whatsapp-float {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: #25d366;
+  color: #fff;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  z-index: 1000; /* Sabse upar dikhega */
+  transition: all 0.3s ease;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.1); /* Hover karne par bada hoga */
+  box-shadow: 0 6px 14px rgba(37, 211, 102, 0.4);
+}
+
+/* Mobile par thoda side mein rakhenge taaki scrollbar se na lade */
+@media (max-width: 768px) {
+  .whatsapp-float {
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+  }
+}
+
+
+/* =========================================
+   🤖 PREMIUM CHATBOT STYLING (Agency Level)
+   ========================================= */
+
+/* --- Wrapper --- */
+.chatbot-wrapper {
+  position: fixed;
+  bottom: 100px; 
+  right: 30px;
+  z-index: 9999;
+}
+
+.chat-toggle-btn {
+  width: 65px;
+  height: 65px;
+  background: linear-gradient(135deg, #2563eb, #9333ea); /* Blue-Purple */
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(37, 99, 235, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+  position: relative;
+}
+
+.chat-toggle-btn:hover {
+  transform: scale(1.1) rotate(10deg);
+}
+
+/* --- The Chat Window (Glassy) --- */
+.chat-window {
+  width: 350px;
+  height: 500px;
+  background: #111; /* Dark Base */
+  border: 1px solid #333;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Header */
+.chat-header {
+  background: linear-gradient(90deg, #1e1e2f, #0f0f0f);
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #222;
+}
+
+/* Messages Area with Pattern */
+.chat-messages {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  /* Subtle Background Pattern */
+  background-image: radial-gradient(#222 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Bubbles */
+.message {
+  max-width: 85%;
+  padding: 12px 16px;
+  border-radius: 18px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  animation: fadeMsg 0.3s ease;
+}
+
+@keyframes fadeMsg {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.bot-msg {
+  background: #27272a; /* Neutral Dark */
+  color: #e5e7eb;
+  border-bottom-left-radius: 4px;
+  border: 1px solid #3f3f46;
+  white-space: pre-line;
+}
+
+.user-msg {
+  background: linear-gradient(135deg, #2563eb, #60a5fa); /* Blue Gradient */
+  color: white;
+  border-bottom-right-radius: 4px;
+  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+}
+
+/* --- Options Buttons (Pill Shape) --- */
+.options-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+  width: 90%;
+}
+
+.option-btn {
+  background: rgba(37, 99, 235, 0.1);
+  border: 1px solid rgba(37, 99, 235, 0.4);
+  color: #93c5fd;
+  padding: 10px 15px;
+  border-radius: 12px;
+  text-align: left;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.2s ease;
+}
+
+.option-btn:hover {
+  background: #2563eb;
+  color: white;
+  transform: translateX(5px);
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.2);
+}
+
+/* --- Typing Dots Animation (The Fun Part) --- */
+.typing {
+  width: fit-content;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  padding: 15px 18px !important;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  background: #9ca3af;
+  border-radius: 50%;
+  animation: bounce 1.4s infinite ease-in-out both;
+}
+
+.dot:nth-child(1) { animation-delay: -0.32s; }
+.dot:nth-child(2) { animation-delay: -0.16s; }
+
+@keyframes bounce {
+  0%, 80%, 100% { transform: scale(0); }
+  40% { transform: scale(1); }
+}
+
+/* Input Area */
+.chat-input-area {
+  padding: 15px;
+  background: #0f0f0f;
+  border-top: 1px solid #222;
+  display: flex;
+  gap: 10px;
+}
+
+.chat-input-area input {
+  flex: 1;
+  background: #1a1a1a;
+  border: 1px solid #333;
+  padding: 10px 15px;
+  border-radius: 20px;
+  color: white;
+  outline: none;
+}
+
+.chat-input-area button {
+  background: none;
+  border: none;
+  color: #2563eb;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .chat-window { width: 320px; height: 450px; right: 20px; bottom: 90px; }
+  .chatbot-wrapper { right: 20px; bottom: 90px; }
+}
+
+/* --- Smart Menu Bot Styling --- */
+
+.options-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+  width: 85%;
+}
+
+.option-btn {
+  background: transparent;
+  border: 1px solid #3b82f6;
+  color: #3b82f6;
+  padding: 8px 12px;
+  border-radius: 20px;
+  text-align: left;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+}
+
+.option-btn:hover {
+  background: #3b82f6;
+  color: white;
+  transform: translateX(5px); /* Thoda right khiskega */
+}
+
+/* User msg styling fix */
+.user-msg {
+  background: #2563eb;
+  color: white;
+  border-bottom-right-radius: 2px;
+  margin-bottom: 10px;
+}
+
+.bot-msg {
+  background: #1f2937;
+  color: #e5e7eb;
+  border-bottom-left-radius: 2px;
+  white-space: pre-line; /* Line breaks (\n) chalane ke liye */
+}
