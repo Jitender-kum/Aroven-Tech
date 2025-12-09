@@ -1,4 +1,4 @@
-import Project from '../modelshai/Project.js';
+import Project from '../models/Project.js';
 
 // @desc    Get all projects
 // @route   GET /api/projects
