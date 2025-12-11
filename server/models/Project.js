@@ -19,7 +19,15 @@ const projectSchema = mongoose.Schema({
   },
   githubLink: {
     type: String,
-  }
+  },
+  isForSale: { type: Boolean, default: false }, 
+  salePrice: { type: String, default: '' },     
+  category: {
+     type: String, default: '' 
+    },      
+ 
+  
+  date: { type: Date, default: Date.now }
 });
 
 const Project = mongoose.model('Project', projectSchema);

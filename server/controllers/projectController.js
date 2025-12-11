@@ -4,7 +4,18 @@ import Project from '../models/Project.js';
 // @route   GET /api/projects
 export const getProjects = async (req, res) => {
   try {
-    const projects = await Project.find(); // Saare projects dhund ke lao
+    const { forSale } = req.query; // Query parameter nikalo
+
+    let filter = {};
+    
+    // 🔥 Filter check karo: Agar ?forSale=true bheja hai, to filter lagao
+    if (forSale === 'true') {
+      filter.isForSale = true;
+    } 
+    
+    // Agar koi query nahi hai, to sab dikhao (default behavior)
+    
+    const projects = await Project.find(filter).sort({ date: -1 }); 
     res.json(projects);
   } catch (error) {
     res.status(500).json({ message: 'Server Error' });
