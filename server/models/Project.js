@@ -9,7 +9,8 @@ const projectSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  tags: [String], // Array of strings e.g. ["React", "Node"]
+  tech: [{ type: String }],
+  tags: { type: [String], default: [] }, // Array of strings e.g. ["React", "Node"]
   image: {
     type: String, // Hum image ka URL store karenge
     required: true,

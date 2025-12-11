@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Reveal from './Reveal'; 
-// Agar aapne HelmetProvider use kiya hai toh use import kar sakte hain
-// import { Helmet } from 'react-helmet-async'; 
+import { Helmet } from 'react-helmet-async'; // Assuming HelmetProvider is used for SEO
 
 const Shop = () => {
   const [saleProjects, setSaleProjects] = useState([]);
@@ -14,7 +13,7 @@ const Shop = () => {
   useEffect(() => {
     const fetchSaleProjects = async () => {
       try {
-        // 🔥 FIX: Relative path use kiya, jo sirf forSale items fetch karega
+        // Relative path use kiya, jo sirf forSale items fetch karega
         const response = await fetch(API_ENDPOINT); 
         const data = await response.json();
         setSaleProjects(data);
@@ -37,11 +36,10 @@ const Shop = () => {
 
   return (
     <section className="shop-section">
-      {/* Agar HelmetProvider setup hai, toh ye tags use karo */}
-      {/* <Helmet>
+      <Helmet>
         <title>Aroven Digital Store | Buy Ready-Made Templates</title>
         <meta name="description" content="Buy instant, high-quality MERN stack templates and digital assets for quick startup launches. View demos and prices." />
-      </Helmet> */}
+      </Helmet>
 
       <div className="container" style={{paddingTop: '80px'}}>
         <Reveal>
@@ -65,7 +63,9 @@ const Shop = () => {
             {saleProjects.map((project, index) => (
               <Reveal key={index} delay={index * 0.2 + 0.3} width="100%">
                 <div className="project-card">
-                  <div className="project-image" style={{ background: project.imageColor, position: 'relative' }}>
+                  
+                  {/* Image Area */}
+                  <div className="project-image" style={{ background: project.imageColor || project.image || 'linear-gradient(45deg, #111, #222)', position: 'relative' }}>
                       
                       {/* 🔥 Price Tag */}
                       {project.salePrice && (
@@ -75,7 +75,7 @@ const Shop = () => {
                       )}
                       
                       <span style={{color: 'rgba(255,255,255,0.2)', fontSize: '2rem', fontWeight:'bold', letterSpacing: '2px'}}>
-                        {project.category.toUpperCase() || 'TEMPLATE'}
+                        {project.category?.toUpperCase() || 'TEMPLATE'}
                       </span>
                   </div>
 
@@ -83,15 +83,22 @@ const Shop = () => {
                     <h3 className="project-title">{project.title}</h3>
                     <p className="project-desc">{project.description}</p>
                     
+                    {/* 🔥 FIX: Conditional Rendering for Arrays (map undefined error solve) */}
                     <div className="tech-stack">
-                      {project.tech.map((tech, i) => (<span className="tech-tag" key={i}>{tech}</span>))}
+                      {project.tech && project.tech.map((tech, i) => (
+                          <span className="tech-tag" key={i}>{tech}</span>
+                      ))}
+                      {/* Agar tags use ho raha hai to: */}
+                      {project.tags && project.tags.map((tag, i) => (
+                          <span className="tech-tag" key={i}>{tag}</span>
+                      ))}
                     </div>
 
                     <div className="project-links" style={{marginTop: 'auto'}}>
                       <a href={project.liveLink} className="link-btn demo" target="_blank" rel="noopener noreferrer">
                         Live Demo
                       </a>
-                      {/* 🔥 BUY NOW BUTTON: Contact page par product name bhej raha hai */}
+                      {/* BUY NOW BUTTON */}
                       <Link 
                         to={`/contact?query=Inquiry for: ${project.title} (${project.salePrice})`} 
                         className="link-btn code" 
