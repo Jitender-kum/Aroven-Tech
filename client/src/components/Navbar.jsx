@@ -38,6 +38,16 @@ const Navbar = () => {
             <a href="/#projects" onClick={() => setIsOpen(false)}>Projects</a>
           </li>
 
+          <li>
+            <Link 
+                to="/shop" 
+                onClick={() => setIsOpen(false)} 
+                style={{color: '#9333ea', fontWeight: 'bold'}} // Highlight karne ke liye
+            >
+                Digital Store
+            </Link>
+          </li>
+
           {/* Contact Link */}
           <li><Link to="/contact" onClick={() => setIsOpen(false)}>Contact</Link></li>
 
