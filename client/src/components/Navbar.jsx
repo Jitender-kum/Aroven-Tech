@@ -48,8 +48,6 @@ const Navbar = () => {
             </Link>
           </li>
 
-          {/* Contact Link */}
-          <li><Link to="/contact" onClick={() => setIsOpen(false)}>Contact</Link></li>
 
           {/* Mobile Button */}
           <li>
