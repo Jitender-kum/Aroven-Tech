@@ -18,7 +18,8 @@ const Contact = () => {
     setStatus('sending');
 
     try {
-      const res = await fetch('https://aroven-tech.onrender.com/api/contact', {
+      // 🔥 FIX: Hardcoded URL ('https://aroven-tech.onrender.com') hata kar sirf relative path use kiya
+      const res = await fetch('/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

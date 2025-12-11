@@ -37,7 +37,6 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/all-projects" element={<AllProjects />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/admin" element={<Admin />} />
         <Route path="/register" element={<Register />} />
         <Route path="/forgot-password" element={<h2 style={{color:'white', textAlign:'center', marginTop:'100px'}}>Work in Progress 🛠️</h2>} />
       </Routes>

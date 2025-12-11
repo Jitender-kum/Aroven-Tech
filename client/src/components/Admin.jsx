@@ -13,23 +13,25 @@ const Admin = () => {
     title: '', description: '', image: '', tags: '', liveLink: ''
   });
   
-  // Edit Mode State (Agar ye null hai matlab New Project, agar ID hai matlab Edit Mode)
+  // Edit Mode State 
   const [editingId, setEditingId] = useState(null);
 
   // --- 1. Security & Fetch ---
   useEffect(() => {
     const token = localStorage.getItem('token');
-    if (!token) navigate('/login');
+    // Abhi alert nahi lagaya, par security fix ke liye lagana chahiye
+    if (!token) navigate('/login'); 
     else fetchData();
-  }, []);
+  }, [navigate]); // navigate dependency array mein zaroori hai
 
   const fetchData = async () => {
     try {
-      const msgRes = await fetch('https://aroven-tech.onrender.com/api/contact');
-      const projRes = await fetch('https://aroven-tech.onrender.com/api/projects');
+      // 🔥 FIX 1: Hardcoded URL hata kar sirf relative path use kiya
+      const msgRes = await fetch('/api/contact');
+      const projRes = await fetch('/api/projects');
       setMessages(await msgRes.json());
       setProjects(await projRes.json());
-    } catch (err) { console.error(err); }
+    } catch (err) { console.error(err); alert("Failed to fetch data."); }
   };
 
   const handleLogout = () => {
@@ -39,13 +41,13 @@ const Admin = () => {
 
   // --- 2. EDIT MODE START ---
   const handleEditClick = (proj) => {
-    window.scrollTo({ top: 0, behavior: 'smooth' }); // Upar form pe le jao
-    setEditingId(proj._id); // Batao ki hum is ID ko edit kar rahe hain
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setEditingId(proj._id); 
     setProject({
       title: proj.title,
       description: proj.description,
       image: proj.image,
-      tags: proj.tags.join(', '), // Array ko wapas string banao input ke liye
+      tags: proj.tags.join(', '), 
       liveLink: proj.liveLink || ''
     });
   };
@@ -60,10 +62,10 @@ const Admin = () => {
     e.preventDefault();
     const tagsArray = project.tags.split(',').map(tag => tag.trim());
     
-    // Agar editingId hai to UPDATE (PUT), nahi to ADD (POST)
+    // 🔥 FIX 2: Hardcoded URL hata kar sirf relative path use kiya
     const url = editingId 
-      ? `https://aroven-tech.onrender.com/api/projects/${editingId}`
-      : 'https://aroven-tech.onrender.com/api/projects';
+      ? `/api/projects/${editingId}`
+      : '/api/projects';
       
     const method = editingId ? 'PUT' : 'POST';
 
@@ -75,26 +77,31 @@ const Admin = () => {
 
     if (res.ok) {
       alert(editingId ? "Project Updated! 🔄" : "Project Added! 🚀");
-      cancelEdit(); // Form reset karo
-      fetchData();  // List refresh karo
+      cancelEdit(); 
+      fetchData();  
+    } else {
+      alert("Submission Failed.");
     }
   };
 
   // --- 4. DELETE ---
   const deleteProject = async (id) => {
     if(!window.confirm("Delete this project?")) return;
-    await fetch(`https://aroven-tech.onrender.com/api/projects/${id}`, { method: 'DELETE' });
+    // 🔥 FIX 3: Hardcoded URL hata kar sirf relative path use kiya
+    await fetch(`/api/projects/${id}`, { method: 'DELETE' });
     setProjects(projects.filter(p => p._id !== id));
   };
 
   const deleteMessage = async (id) => {
     if(!window.confirm("Delete message?")) return;
-    await fetch(`https://aroven-tech.onrender.com/api/contact/${id}`, { method: 'DELETE' });
+    // 🔥 FIX 4: Hardcoded URL hata kar sirf relative path use kiya
+    await fetch(`/api/contact/${id}`, { method: 'DELETE' });
     setMessages(messages.filter(m => m._id !== id));
   };
 
   return (
     <div className="admin-page">
+      {/* ... baaki return code wahi rahega ... */}
       <div className="container">
         
         {/* Header */}
@@ -105,7 +112,7 @@ const Admin = () => {
 
         <div className="admin-grid">
           
-          {/* --- FORM SECTION (Dynamic Title) --- */}
+          {/* --- FORM SECTION --- */}
           <div className="admin-card">
             <h2 className="card-title">
               {editingId ? "Edit Project ✏️" : "Add New Project 🚀"}
@@ -132,7 +139,7 @@ const Admin = () => {
                 {editingId ? "Update Project 🔄" : "Upload Project 🚀"}
               </button>
               
-              {/* Cancel Button (Sirf Edit mode me dikhega) */}
+              {/* Cancel Button */}
               {editingId && (
                 <button type="button" onClick={cancelEdit} className="btn btn-secondary" style={{width: '100%', marginTop: '10px'}}>
                   Cancel Edit ❌
