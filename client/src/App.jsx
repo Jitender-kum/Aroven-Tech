@@ -12,6 +12,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import WhatsAppBtn from './components/WhatsAppBtn';
 import Chatbot from './components/Chatbot';
+import Shop from './components/Shop';
 import './App.css';
 
 // 1. Home se Contact hata diya (Clean Home)
@@ -38,6 +39,7 @@ function App() {
         <Route path="/all-projects" element={<AllProjects />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/shop" element={<Shop />} />
         <Route path="/forgot-password" element={<h2 style={{color:'white', textAlign:'center', marginTop:'100px'}}>Work in Progress 🛠️</h2>} />
       </Routes>
       <WhatsAppBtn />
